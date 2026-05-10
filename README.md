@@ -37,51 +37,44 @@ Each word gets a score based on:
 
 ```bash
 git clone https://github.com/SargeraSSS/typing_trainer.git
-cd typing-trainer
-
+cd typing_trainer
 python -m venv tt
+```
 
-# Windows
+Windows:
+```bash
 tt\Scripts\activate
+```
 
-# Linux/macOS
+Linux/macOS:
+```bash
 source tt/bin/activate
+```
 
+Then:
+```bash
 pip install -r requirements.txt
 ```
 
+---
+
 ## Usage
 
-**Windows:**
+Windows:
 ```bash
 python main.py
 ```
+Or just double-click `run.bat`
 
-**Linux/macOS:**
+Linux/macOS:
 ```bash
 chmod +x run.sh
 ./run.sh
-# або
-python main.py
-```
-
-## Platforms
-
-works on Windows, Linux and MacOS `msvcrt` (Windows) і `tty/termios` (Linux/macOS).
 ```
 
 ---
 
-## Usage
-
-```bash
-python main.py
-```
-
-Or on Windows — just double-click `run.bat`
-
----
-
+## Project Structure
 ## Project Structure
 
 ```
@@ -101,4 +94,4 @@ typing_trainer/
 - Python 3.14
 - [Rich](https://github.com/Textualize/rich) — terminal UI
 - `msvcrt` — raw keyboard input (Windows)
-- 'tty\termios' - (Linux)
+- `tty/termios` — raw keyboard input (Linux/macOS)
