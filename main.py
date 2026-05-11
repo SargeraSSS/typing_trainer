@@ -1,5 +1,5 @@
 from trainer import mode_time, mode_words
-if __name__ == "__main":
+if __name__ == "__main__":
     print("Please choose difficulty: 1 = Easy, 2 = Medium, 3 = Hard")
     words_difficulty_ask = input('')
     if words_difficulty_ask == '1':
