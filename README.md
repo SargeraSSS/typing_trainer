@@ -12,6 +12,7 @@ Built with Python + Rich — runs entirely in your terminal.
 - **Real-time feedback** — green for correct words, red for wrong ones
 - **Live stats** — WPM and accuracy after each session
 - **Clean terminal UI** — two-panel layout via Rich (input box + word display)
+- **Cross-platform** — works on Windows, Linux and macOS
 
 ---
 
@@ -38,52 +39,43 @@ Each word gets a score based on:
 ```bash
 git clone https://github.com/SargeraSSS/typing_trainer.git
 cd typing_trainer
-python -m venv tt
-```
-
-Windows:
-```bash
-tt\Scripts\activate
-```
-
-Linux/macOS:
-```bash
-source tt/bin/activate
-```
-
-Then:
-```bash
 pip install -r requirements.txt
 ```
+
+No virtual environment required — just clone and install.
 
 ---
 
 ## Usage
 
-Windows:
+**Windows:**
 ```bash
 python main.py
 ```
 Or just double-click `run.bat`
 
-Linux/macOS:
+**Linux/macOS:**
 ```bash
 chmod +x run.sh
 ./run.sh
+```
+Or:
+```bash
+python3 main.py
 ```
 
 ---
 
 ## Project Structure
-## Project Structure
 
 ```
 typing_trainer/
-├── main.py        # entry point + menu
-├── trainer.py     # game logic, input handling, modes
-├── words.py       # word loading + difficulty scoring
-├── words.json     # ~2500 curated English words
-├── run.bat        # one-click launcher (Windows)
+├── main.py          # entry point + menu
+├── trainer.py       # game logic, input handling, modes
+├── words.py         # word loading + difficulty scoring
+├── words.json       # ~2500 curated English words
+├── run.bat          # one-click launcher (Windows)
+├── run.sh           # one-click launcher (Linux/macOS)
 └── requirements.txt
 ```
 
@@ -91,7 +83,7 @@ typing_trainer/
 
 ## Stack
 
-- Python 3.14
+- Python 3.8+
 - [Rich](https://github.com/Textualize/rich) — terminal UI
 - `msvcrt` — raw keyboard input (Windows)
 - `tty/termios` — raw keyboard input (Linux/macOS)
