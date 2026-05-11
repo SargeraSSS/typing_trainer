@@ -49,7 +49,7 @@ def type_session(words, time_limit=None):
             key = getch()
             if key == "|":
                 break
-            if key == '\b':
+            if key == '\b' or key == '\x7f':
                 if current_input:
                     current_input = current_input[:-1]
             elif key == ' ':
