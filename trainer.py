@@ -21,9 +21,11 @@ else:
         old = termios.tcgetattr(fd)
         try:
             tty.setraw(fd)
-            return sys.stdin.read(1)
+            ch = sys.stdin.buffer.read(1)
+            return ch.decode('utf-8', errors='ignore')
         finally:
             termios.tcsetattr(fd, termios.TCSADRAIN, old)
+
 console = Console()
 
 
@@ -49,7 +51,7 @@ def type_session(words, time_limit=None):
             key = getch()
             if key == "|":
                 break
-            if key == '\b' or key == '\x7f':
+            if key in ('\b', '\x7f'):  # backspace Windows + Linux
                 if current_input:
                     current_input = current_input[:-1]
             elif key == ' ':
@@ -63,14 +65,13 @@ def type_session(words, time_limit=None):
                 current_input = ""
                 if current_word_index == len(words):
                     break
-            elif key == '\r':
+            elif key in ('\r', '\n'):
                 continue
             else:
                 if not current_input and current_word_index == 0:
                     session_start = time.time()
                     start_time = time.time()
                 current_input += key
-
             render(words, current_word_index, current_input, result, layout)
             live.refresh()
     return correct_words_count, total_attempts, time.time() - start_time
@@ -88,7 +89,6 @@ def render(words, current_word_index, current_input, result, layout):
             line += f"[bold yellow]{word}[/bold yellow] "
         else:
             line += f"[grey34]{word}[/grey34] "
-
     layout["input"].update(Panel(current_input))
     layout["prompt"].update(Panel(line))
 
@@ -109,8 +109,6 @@ def mode_time(words_difficulty, time_limit):
     accuracy = (correct_words_count / total_attempts) * 100
     print(f"Accuracy is {round(accuracy, 1)}%")
 
-# режим на кількість слів
-
 
 def mode_words(words_difficulty, count):
     words = get_words(words_difficulty, count)
@@ -118,7 +116,7 @@ def mode_words(words_difficulty, count):
     console.clear()
     print()
     print(f"Words typped correctly {correct_words_count}")
-    WPM = (correct_words_count/total_time) * 60
+    WPM = (correct_words_count / total_time) * 60
     print(f"Word in minute:  {round(WPM, 2)}")
     accuracy = (correct_words_count / total_attempts) * 100
     print(f"Accuracy is {round(accuracy, 1)}%")
