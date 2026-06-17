@@ -35,11 +35,12 @@ Each word gets a score based on:
 ---
 
 ## Installation
-
+- Python 3.8+ — [download here](https://www.python.org/downloads/)  
+During installation check **"Add Python to PATH"**
 ```bash
 git clone https://github.com/SargeraSSS/typing_trainer.git
 cd typing_trainer
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 ```
 
 No virtual environment required — just clone and install.
